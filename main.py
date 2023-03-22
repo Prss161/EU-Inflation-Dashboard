@@ -3,11 +3,16 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 def main():
-    url = "https://ec.europa.eu/eurostat/databrowser/view/PRC_HICP_MANR__custom_3761882/settings_1/table?lang=en&bookmarkId=4ad27e6f-358a-4a3d-82a0-587d69a833eb"
+    url = "https://tradingeconomics.com/country-list/inflation-rate?continent=europe"
     driver = webdriver.Chrome()
     driver.get(url)
-    time.sleep(20)
-    number = driver.find_element(By.XPATH, '')
-    print(number.text)
+    time.sleep(3)
+    hinflatio_country_name = driver.find_element(By.XPATH, '//*[@id="ctl00_ContentPlaceHolder1_ctl01_UpdatePanel1"]/div/div/table/tbody/tr[46]/td[1]')
+    hinflatio_country_numb = driver.find_element(By.XPATH, '//*[@id="ctl00_ContentPlaceHolder1_ctl01_UpdatePanel1"]/div/div/table/tbody/tr[46]/td[2]')
+    linflation_country_name = driver.find_element(By.XPATH, '//*[@id="ctl00_ContentPlaceHolder1_ctl01_UpdatePanel1"]/div/div/table/tbody/tr[1]/td[1]')
+    linflation_country_numb = driver.find_element(By.XPATH, '//*[@id="ctl00_ContentPlaceHolder1_ctl01_UpdatePanel1"]/div/div/table/tbody/tr[1]/td[2]')
+    Poland = driver.find_element(By.XPATH, '//*[@id="ctl00_ContentPlaceHolder1_ctl01_UpdatePanel1"]/div/div/table/tbody/tr[40]/td[2]')
+    
+    print(hinflatio_country_name.text ,hinflatio_country_numb.text, linflation_country_name.text, linflation_country_numb.text, 'Poland', Poland.text)
 
 main()
