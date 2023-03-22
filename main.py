@@ -1,18 +1,16 @@
-import time
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+import pandas as pd
+import plotly.express as px
+import streamlit as st
 
-def main():
-    url = "https://tradingeconomics.com/country-list/inflation-rate?continent=europe"
-    driver = webdriver.Chrome()
-    driver.get(url)
-    time.sleep(3)
-    hinflatio_country_name = driver.find_element(By.XPATH, '//*[@id="ctl00_ContentPlaceHolder1_ctl01_UpdatePanel1"]/div/div/table/tbody/tr[46]/td[1]')
-    hinflatio_country_numb = driver.find_element(By.XPATH, '//*[@id="ctl00_ContentPlaceHolder1_ctl01_UpdatePanel1"]/div/div/table/tbody/tr[46]/td[2]')
-    linflation_country_name = driver.find_element(By.XPATH, '//*[@id="ctl00_ContentPlaceHolder1_ctl01_UpdatePanel1"]/div/div/table/tbody/tr[1]/td[1]')
-    linflation_country_numb = driver.find_element(By.XPATH, '//*[@id="ctl00_ContentPlaceHolder1_ctl01_UpdatePanel1"]/div/div/table/tbody/tr[1]/td[2]')
-    Poland = driver.find_element(By.XPATH, '//*[@id="ctl00_ContentPlaceHolder1_ctl01_UpdatePanel1"]/div/div/table/tbody/tr[40]/td[2]')
-    
-    print(hinflatio_country_name.text ,hinflatio_country_numb.text, linflation_country_name.text, linflation_country_numb.text, 'Poland', Poland.text)
+st.set_page_config(page_title='Inflation in EU',
+                   page_icon = 'bar_chart:',
+                   layout = 'wide')
+df = pd.read_excel(
+    io = 'Data.xlsx',
+    engine ='openpyxl',
+    sheet_name = 'Arkusz1',
+    usecols = 'A:AW',
+    nrows = 1000,
+)
 
-main()
+st.dataframe(df)
