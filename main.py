@@ -13,4 +13,13 @@ df = pd.read_excel(
     nrows = 1000,
 )
 
+df = df.T
+df.columns = df.iloc[0]
+df = df.iloc[1:]
 st.dataframe(df)
+
+
+fig = px.line(df, x=df.index, y=df.columns, title='Inflation by Country')
+fig.update_xaxes(title='Time')
+fig.update_yaxes(title='Inflation')
+st.plotly_chart(fig)
