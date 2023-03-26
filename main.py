@@ -26,3 +26,12 @@ fig = px.line(df, x=df.index, y=df.columns, title='Inflation by Country')
 fig.update_xaxes(title='Time')
 fig.update_yaxes(title='Inflation')
 st.plotly_chart(fig)
+
+#adding sidebar for filtering or something else...
+
+st.sidebar.header('Filters:')
+Country = st.sidebar.multiselect(
+    'Select Country:',
+    options = df['Country'].unique()
+    default = df['Country'].unique()
+)
