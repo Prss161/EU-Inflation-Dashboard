@@ -32,6 +32,12 @@ st.plotly_chart(fig)
 st.sidebar.header('Filters:')
 Country = st.sidebar.multiselect(
     'Select Country:',
-    options = df['Country'].unique()
-    default = df['Country'].unique()
+    options = df.columns.unique(),
+    default = None
+)
+
+Year = st.sidebar.multiselect(
+    'Select Time:',
+    options = df.index.unique(),
+    default = None
 )
