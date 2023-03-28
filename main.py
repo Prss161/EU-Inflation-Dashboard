@@ -2,6 +2,8 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+#Need to think about scraping data from website eu statista with panda.
+
 st.set_page_config(page_title='Inflation in EU',
                    page_icon = 'bar_chart:',
                    layout = 'wide')
