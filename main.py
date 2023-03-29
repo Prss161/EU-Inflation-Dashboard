@@ -35,11 +35,18 @@ st.sidebar.header('Filters:')
 Country = st.sidebar.multiselect(
     'Select Country:',
     options = df.columns.unique(),
-    default = None
+    default = 'Poland'
 )
 
 Year = st.sidebar.multiselect(
     'Select Time:',
     options = df.index.unique(),
-    default = None
+    default = '2023-02'
 )
+
+selected_countries = Country
+selected_years = Year
+
+df_selection = df.loc[df.index.isin(selected_years), selected_countries]
+
+st.dataframe(df_selection)
