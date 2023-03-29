@@ -23,12 +23,6 @@ df = df.iloc[1:]
 #Streaming transposed data
 st.dataframe(df)
 
-#Coding linechart
-fig = px.line(df, x=df.index, y=df.columns, title='Inflation by Country')
-fig.update_xaxes(title='Time')
-fig.update_yaxes(title='Inflation')
-st.plotly_chart(fig)
-
 #adding sidebar for filtering or something else...
 
 st.sidebar.header('Filters:')
@@ -47,6 +41,12 @@ Year = st.sidebar.multiselect(
 selected_countries = Country
 selected_years = Year
 
+#STREAMING SELECTED DATA
 df_selection = df.loc[df.index.isin(selected_years), selected_countries]
-
 st.dataframe(df_selection)
+
+#LINECHART
+fig = px.line(df, x=df.index, y=df.columns, title='Inflation by Country')
+fig.update_xaxes(title='Time')
+fig.update_yaxes(title='Inflation')
+st.plotly_chart(fig)
