@@ -3,10 +3,15 @@ import plotly.express as px
 import streamlit as st
 
 #Need to think about scraping data from website eu statista with panda.
-
+#CONFIG STREAMLIT
 st.set_page_config(page_title='Inflation in EU',
                    page_icon = 'bar_chart:',
                    layout = 'wide')
+
+#MAINPAGE
+st.title(':bar_chart: EU Inflation Statistic Dashboard')
+st.markdown('##')
+
 df = pd.read_excel(
     io = 'Data.xlsx',
     engine ='openpyxl',
@@ -20,10 +25,16 @@ df = df.T
 df.columns = df.iloc[0]
 df = df.iloc[1:]
 
+#TOP-INFLATION
+selected_data = df.loc[['2023-01']]
+selected_data = pd.to_numeric(selected_data.squeeze(), errors='coerce')
+highest_inflation = selected_data.max()
+country_with_highest_inflation = selected_data.idxmax()
+
 #Streaming transposed data
 st.dataframe(df)
 
-#adding sidebar for filtering or something else...
+#SIDEBAR-FILTERS
 
 st.sidebar.header('Filters:')
 Country = st.sidebar.multiselect(
