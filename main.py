@@ -31,6 +31,11 @@ selected_data = pd.to_numeric(selected_data.squeeze(), errors='coerce')
 highest_inflation = selected_data.max()
 country_with_highest_inflation = selected_data.idxmax()
 
+left_column, middle_column, right_column = st.columns(3)
+with left_column:
+    st.subheader('Top inflation')
+    st.subheader(f'{highest_inflation:,}')
+
 #Streaming transposed data
 st.dataframe(df)
 
