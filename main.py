@@ -30,11 +30,29 @@ selected_data = df.loc[['2023-01']]
 selected_data = pd.to_numeric(selected_data.squeeze(), errors='coerce')
 highest_inflation = selected_data.max()
 country_with_highest_inflation = selected_data.idxmax()
+#LOWEST-INFLATION
+selected_data2 = df.loc['2023-01']
+selected_data2 = pd.to_numeric(selected_data2.squeeze(), errors='coerce')
+lowest_inflation = selected_data2.min()
+country_with_lowest_inflation = selected_data2.idxmin()
+#POLAND-INFLATION
+
 
 left_column, middle_column, right_column = st.columns(3)
+
 with left_column:
     st.subheader('Top inflation')
+    st.subheader(country_with_highest_inflation)
     st.subheader(f'{highest_inflation:,}')
+
+with middle_column:
+    st.subheader('In Poland')
+    
+    
+with right_column:
+    st.subheader('Lowest inflation:')
+    st.subheader(country_with_lowest_inflation)
+    st.subheader(lowest_inflation)
 
 #Streaming transposed data
 st.dataframe(df)
