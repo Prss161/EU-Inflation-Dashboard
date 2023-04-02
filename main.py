@@ -36,6 +36,7 @@ selected_data2 = pd.to_numeric(selected_data2.squeeze(), errors='coerce')
 lowest_inflation = selected_data2.min()
 country_with_lowest_inflation = selected_data2.idxmin()
 #POLAND-INFLATION
+selected_poland = df.loc['2023-01','Poland']
 
 
 left_column, middle_column, right_column = st.columns(3)
@@ -47,6 +48,7 @@ with left_column:
 
 with middle_column:
     st.subheader('In Poland')
+    st.subheader(selected_poland)
     
     
 with right_column:
@@ -76,11 +78,17 @@ selected_countries = Country
 selected_years = Year
 
 #STREAMING SELECTED DATA
+st.subheader('Data selected by filters:')
+st.markdown('##')
+
 df_selection = df.loc[df.index.isin(selected_years), selected_countries]
 st.dataframe(df_selection)
 
+
 #LINECHART
+st.subheader('Linechart')
 fig = px.line(df, x=df.index, y=df.columns, title='Inflation by Country')
 fig.update_xaxes(title='Time')
 fig.update_yaxes(title='Inflation')
+fig.update_layout(width=1500, height=800)
 st.plotly_chart(fig)
