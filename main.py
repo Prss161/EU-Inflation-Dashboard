@@ -10,7 +10,7 @@ st.set_page_config(page_title='Inflation in EU',
 
 #MAINPAGE
 st.title(':bar_chart: EU Inflation Statistic Dashboard')
-st.markdown('##')
+st.markdown('###')
 
 df = pd.read_excel(
     io = 'Data.xlsx',
@@ -55,12 +55,9 @@ with right_column:
     st.subheader('Lowest inflation:')
     st.subheader(country_with_lowest_inflation)
     st.subheader(lowest_inflation)
-
-#Streaming transposed data
-st.dataframe(df)
+st.markdown('---')
 
 #SIDEBAR-FILTERS
-
 st.sidebar.header('Filters:')
 Country = st.sidebar.multiselect(
     'Select Country:',
@@ -79,11 +76,8 @@ selected_years = Year
 
 #STREAMING SELECTED DATA
 st.subheader('Data selected by filters:')
-st.markdown('##')
-
 df_selection = df.loc[df.index.isin(selected_years), selected_countries]
 st.dataframe(df_selection)
-
 
 #LINECHART
 st.subheader('Linechart')
@@ -92,3 +86,7 @@ fig.update_xaxes(title='Time')
 fig.update_yaxes(title='Inflation')
 fig.update_layout(width=1500, height=800)
 st.plotly_chart(fig)
+
+#STREAMING DATA
+st.subheader('All of Data')
+st.dataframe(df)
