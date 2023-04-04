@@ -26,17 +26,17 @@ df.columns = df.iloc[0]
 df = df.iloc[1:]
 
 #TOP-INFLATION
-selected_data = df.loc[['2023-01']]
+selected_data = df.loc[['2023-02']]
 selected_data = pd.to_numeric(selected_data.squeeze(), errors='coerce')
 highest_inflation = selected_data.max()
 country_with_highest_inflation = selected_data.idxmax()
 #LOWEST-INFLATION
-selected_data2 = df.loc['2023-01']
+selected_data2 = df.loc['2023-02']
 selected_data2 = pd.to_numeric(selected_data2.squeeze(), errors='coerce')
 lowest_inflation = selected_data2.min()
 country_with_lowest_inflation = selected_data2.idxmin()
 #POLAND-INFLATION
-selected_poland = df.loc['2023-01','Poland']
+selected_poland = df.loc['2023-02','Poland']
 
 
 left_column, middle_column, right_column = st.columns(3)
@@ -62,7 +62,7 @@ st.sidebar.header('Filters:')
 Country = st.sidebar.multiselect(
     'Select Country:',
     options = df.columns.unique(),
-    default = 'Poland'
+    default = ['Poland', 'Germany (until 1990 former territory of the FRG)']
 )
 
 Year = st.sidebar.multiselect(
