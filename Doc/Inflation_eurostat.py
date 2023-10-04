@@ -37,15 +37,15 @@ inflation_eu.drop(columns=['freq', 'unit', 'coicop'], inplace=True)
 
 # Select the desired columns for plotting
 data = pd.concat([inflation_eu.iloc[:, 0:1], inflation_eu.iloc[:, -120:]], axis=1)
-data.rename(columns={'geo\\TIME_PERIOD': 'Gebied'}, inplace=True)
-data.set_index('Gebied', inplace=True)
+data.rename(columns={'geo\\TIME_PERIOD': 'Country'}, inplace=True)
+data.set_index('Country', inplace=True)
 
 # Filter data for European Union member countries
 data = data.loc[landcodes_eu]
 data.rename(index=landcodes_eu, inplace=True)
 
-# Save the final data to a CSV file
-data.to_csv(f'{output_path}Inflation_in_EU.csv')
+# Save the final data to an XLSX file
+data.to_excel(f'{output_path}Inflation_in_EU.xlsx', sheet_name='Inflation_data', index=True)
 
 # Removing unsorted data
-shutil.rmtree("data\unsorted_data")
+shutil.rmtree("data/unsorted_data/")
