@@ -19,4 +19,4 @@ $ python main.py
  ```
 
 ## Photos
-![Dashboard](Images\Dashboard.png)
+![Dashboard](Images/Dashboard.png)
