@@ -7,11 +7,11 @@ This script is downloading data from eurostat about Harmonised Indices of Consum
 Python 3.10.11 64-bit is required to run this project.
 Additional python requirements are available in requirements.txt.
 
-## How it works
+## How it works?
 
 `main.py` uses subprocess to run script in particular order, first runs `inflation_eurostat.py` to get most recent data from eurostat about inflation in EU countries. Finally it runs `dashboard.py` where streamlit is hosting locally interactive dashboard.
 
-## How to run code
+## How to run code?
 
 To run the code use command:
 ```bash
